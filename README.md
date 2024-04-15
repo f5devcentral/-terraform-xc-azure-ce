@@ -57,7 +57,7 @@ Description of available input variables. Used input variables will change per t
 | f5xc_api_p12_file             | Path to F5 XC exported API cert file                                                                               |
 | f5xc_aws_availability_zone    | AWS availability zone to deploy object in                                                                          |
 |                               |                                                                                                                    |
-| aws_existing_vnet_id           | Id of existing AWS VNET e.g. VNET-089de438436174ab7                                                                  |
+| aws_existing_vnet_id          | Id of existing AWS VNET e.g. VNET-089de438436174ab7                                                                |
 | aws_existing_sg_slo_ids       | SLO comma separated list of security group id strings e.g. ["id-1", "id-2", "id-3"]. Leave empty to omit injection |
 | aws_existing_sg_sli_ids       | SLI comma separated list of security group id strings e.g. ["id-1", "id-2", "id-3"]. Leave empty to omit injection |
 | aws_slo_subnet_id_node`X`     | Per node slo (outside interface) existing subnet id                                                                |
@@ -67,8 +67,8 @@ Description of available input variables. Used input variables will change per t
 
 ## Topologies
 
-| Name                                                                         | Description                                                                                       |
-|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Name                                                                          | Description                                                                                        |
+|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | Single Node Single NIC new VNET / subnet                                      | [Description](examples/single_node_single_nic_new_vnet_new_subnet/README.md)                       |
 | Single Node Multi NIC new VNET / subnet                                       | [Description](examples/single_node_multi_nic_new_vnet_new_subnet/README.md)                        |
 | Single Node Single NIC Existing VNET / new subnet                             | [Description](examples/single_node_single_nic_existing_vnet_new_subnet/README.md)                  |
@@ -90,8 +90,8 @@ Description of available input variables. Used input variables will change per t
 
 ## Feature specific examples
 
-| Name                                                                            | Description                                                                               |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| Name                                                                            | Description                                                                                |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | Single Node with offline survivability mode and l3 performance enhancement mode | [Description](examples/single_node_single_nic_new_vnet_new_subnet_jframe_l7_osm/README.md) |
 
 ## ClickOps
