@@ -1,6 +1,6 @@
 owner                            = "owner_email_address"
 project_prefix                   = "f5xc"
-project_suffix                   = "07"
+project_suffix                   = "01"
 # ssh_public_key_file              = "path to ssh public key file"
 azurerm_vnet_address_space       = ["192.168.0.0/21"]
 # f5xc_tenant                      = "full f5 xc tenant name e.g. playground-abcdefg"
