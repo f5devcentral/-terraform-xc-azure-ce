@@ -26,7 +26,7 @@ variable "azurerm_vnet_address_space" {
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance admin username"
-  default     = "admin"
+  default     = "operator"
 }
 
 variable "f5xc_api_p12_file" {
@@ -124,17 +124,21 @@ variable "f5xc_azure_marketplace_agreement_plans" {
 }
 
 variable "azure_client_id" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "azure_client_secret" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "azure_tenant_id" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "azure_subscription_id" {
-  type = string
+  type    = string
+  default = ""
 }
