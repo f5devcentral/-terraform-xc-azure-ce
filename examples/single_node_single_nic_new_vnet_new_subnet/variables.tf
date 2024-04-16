@@ -26,7 +26,7 @@ variable "azurerm_vnet_address_space" {
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
-  default     = "cloud-user"
+  default     = "operator"
 }
 
 variable "f5xc_api_p12_file" {
