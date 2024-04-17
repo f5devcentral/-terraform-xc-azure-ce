@@ -29,6 +29,12 @@ variable "azurerm_instance_admin_username" {
   default     = "operator"
 }
 
+variable "azurerm_disable_password_authentication" {
+  type        = bool
+  description = "Azure VM disable user password authentication"
+  default     = true
+}
+
 variable "f5xc_api_p12_file" {
   description = "F5 XC API certificate file"
   type        = string
