@@ -34,7 +34,7 @@ Terraform templates to create F5XC Azure cloud CE (manual mode deployment).
 ## Usage
 
 - Clone this repo with: `git clone --recurse-submodules https://github.com/f5devcentral/terraform-xc-azure-ce`
-- Enter repository directory with: `cd terraform-xc-aws-ce`
+- Enter repository directory with: `cd terraform-xc-azure-ce`
 - Follow usage description in __topologies__ section
 - Multiple examples in example directory are available. Change to example directory that is to be deployed
   with `cd examples/<example_dir_name>`
