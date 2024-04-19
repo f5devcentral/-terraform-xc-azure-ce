@@ -23,6 +23,7 @@ Terraform templates to create F5XC Azure cloud CE (manual mode deployment).
 
 - Git (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - Terraform (https://developer.hashicorp.com/terraform/install?product_intent=terraform)
+- Registering an application in the Azure portal and add client secret (https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
 - F5 XC Credentials (https://docs.cloud.f5.com/docs/how-to/user-mgmt/credentials)
     * API Certificate
 - SSH public key
@@ -43,27 +44,29 @@ Terraform templates to create F5XC Azure cloud CE (manual mode deployment).
 
 Description of available input variables. Used input variables will change per topology example:
 
-| Name                          | Description                                                                                                        |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| owner                         | Tag aws objects with creator / owner email address                                                                 |
-| project_prefix                | String added at the beginning of various AWS / F5 XC object identifier. `<project_prefix>_<object>`                |
-| project_suffix                | String added at the end of various AWS / F5 XC object identifier. `<project_prefix>_<object>_<project_suffix>`     |
-|                               | Example prefix + suffix for F5XC site name `project_prefix_cluster_name_project_suffix`                            |
-|                               |                                                                                                                    |
-| f5xc_tenant                   | Full f5 xc tenant name e.g. playground-abcdefg                                                                     |
-| f5xc_api_url                  | F5 XC API URL e.g. https://https://playground.console.ves.volterra.io/api                                          |
-| f5xc_aws_region               | AWS region to deploy site in e.g. "us-west-2"                                                                      |
-| f5xc_cluster_name             | F5 XC cluster name e.g. "aws-ce-test"                                                                              |
-| f5xc_api_p12_file             | Path to F5 XC exported API cert file                                                                               |
-| f5xc_aws_availability_zone    | AWS availability zone to deploy object in                                                                          |
-|                               |                                                                                                                    |
-| aws_existing_vnet_id          | Id of existing AWS VNET e.g. VNET-089de438436174ab7                                                                |
-| aws_existing_sg_slo_ids       | SLO comma separated list of security group id strings e.g. ["id-1", "id-2", "id-3"]. Leave empty to omit injection |
-| aws_existing_sg_sli_ids       | SLI comma separated list of security group id strings e.g. ["id-1", "id-2", "id-3"]. Leave empty to omit injection |
-| aws_slo_subnet_id_node`X`     | Per node slo (outside interface) existing subnet id                                                                |
-| aws_sli_subnet_id_node`X`     | Per node sli (inside interface) existing subnet id                                                                 |
-| aws_existing_key_pair_id      | Inject existing ssh key pair `id`                                                                                  |
-| aws_existing_iam_profile_name | Inject existing iam profile `name`                                                                                 |
+| Name                             | Description                                                                                                    |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------|
+| owner                            | Tag aws objects with creator / owner email address                                                             |
+| project_prefix                   | String added at the beginning of various AWS / F5 XC object identifier. `<project_prefix>_<object>`            |
+| project_suffix                   | String added at the end of various AWS / F5 XC object identifier. `<project_prefix>_<object>_<project_suffix>` |
+|                                  | Example prefix + suffix for F5XC site name `project_prefix_cluster_name_project_suffix`                        |
+|                                  |                                                                                                                |
+| f5xc_tenant                      | Full f5 xc tenant name e.g. playground-abcdefg                                                                 |
+| f5xc_api_url                     | F5 XC API URL e.g. https://https://playground.console.ves.volterra.io/api                                      |
+| f5xc_aws_region                  | AWS region to deploy site in e.g. "us-west-2"                                                                  |
+| f5xc_cluster_name                | F5 XC cluster name e.g. "aws-ce-test"                                                                          |
+| f5xc_api_p12_file                | Path to F5 XC exported API cert file                                                                           |
+| f5xc_azure_az_node0              | Azure availability zone for cluster node0 e.g. "1"                                                             |
+| f5xc_azure_az_node1              | Azure availability zone for cluster node1 e.g. "2"                                                             |
+| f5xc_azure_az_node2              | Azure availability zone for cluster node2 e.g. "3"                                                             |
+| f5xc_azure_vnet_slo_subnet_node0 | F5 XC node0 SLO interface subnet e.g. "192.168.0.0/26"                                                         |  
+| f5xc_azure_vnet_sli_subnet_node0 | F5 XC node0 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
+| f5xc_azure_vnet_slo_subnet_node1 | F5 XC node1 SLO interface subnet e.g. "192.168.0.0/26"                                                         |  
+| f5xc_azure_vnet_sli_subnet_node1 | F5 XC node1 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
+| f5xc_azure_vnet_slo_subnet_node2 | F5 XC node2 SLO interface subnet e.g. "192.168.0.0/26"                                                         |  
+| f5xc_azure_vnet_sli_subnet_node2 | F5 XC node2 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
+|                                  |                                                                                                                |
+| azurerm_vnet_address_space       | Azure vnet address space provided as list list strings e.g. ["192.168.1.0/24", "192.168.2.0/24"]               |
 
 ## Topologies
 

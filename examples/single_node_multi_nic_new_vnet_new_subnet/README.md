@@ -1,4 +1,4 @@
-# Example Single node single NIC new VPC new subnet
+# Example Single node multi NIC new VPC new subnet
 
 This example instantiates:
 
