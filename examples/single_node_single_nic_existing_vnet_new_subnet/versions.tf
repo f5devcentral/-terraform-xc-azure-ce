@@ -6,9 +6,9 @@ terraform {
       source  = "volterraedge/volterra"
       version = "= 0.11.30"
     }
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 4.51.0"
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.25.0"
     }
     local = ">= 2.2.3"
     null  = ">= 3.1.1"
