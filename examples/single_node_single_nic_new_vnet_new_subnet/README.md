@@ -3,6 +3,14 @@
 This example instantiates:
 
 - Single node CE
+- Azure resource group
+- Azure linux virtual machine
+- Azure virtual_network
+- Azure subnet SLO
+- Azure network interface SLO
+- Azure network security_group SLO
+- Azure network interface security group association SLO
+- Azure public IP SLO
 
 # Usage
 
