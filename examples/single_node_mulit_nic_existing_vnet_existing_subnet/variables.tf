@@ -18,11 +18,6 @@ variable "ssh_public_key_file" {
   type        = string
 }
 
-variable "azurerm_vnet_address_space" {
-  description = "Azure VNET CIDR block"
-  type        = list(string)
-}
-
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
@@ -106,7 +101,7 @@ variable "f5xc_cluster_name" {
 variable "f5xc_ce_gateway_type" {
   description = "F5 XC CE gateway type"
   type        = string
-  default     = "ingress_gateway"
+  default     = "ingress_egress_gateway"
 }
 
 variable "f5xc_cluster_latitude" {
@@ -119,29 +114,6 @@ variable "f5xc_cluster_longitude" {
   description = "F5 XC CE geo longitude"
   type        = number
   default     = 40.730610
-}
-
-variable "f5xc_azure_marketplace_agreement_publisher" {
-  type    = string
-  default = "volterraedgeservices"
-}
-
-variable "f5xc_azure_marketplace_agreement_offers" {
-  type = map(string)
-  default = {
-    ingress_egress_gateway = "entcloud_voltmesh_voltstack_node"
-    ingress_gateway        = "volterra-node"
-    app_stack              = "entcloud_voltmesh_voltstack_node"
-  }
-}
-
-variable "f5xc_azure_marketplace_agreement_plans" {
-  type = map(string)
-  default = {
-    ingress_egress_gateway = "freeplan_entcloud_voltmesh_voltstack_node_multinic"
-    ingress_gateway        = "volterra-node"
-    app_stack              = "freeplan_entcloud_voltmesh_voltstack_node"
-  }
 }
 
 variable "azure_client_id" {
