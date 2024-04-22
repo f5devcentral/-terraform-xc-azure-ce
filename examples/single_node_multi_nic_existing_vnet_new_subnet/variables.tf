@@ -40,6 +40,16 @@ variable "azurerm_region" {
   default = "eastus"
 }
 
+variable "azurerm_existing_vnet_name" {
+  type        = string
+  description = "existing azure vnet name"
+}
+
+variable "azurerm_existing_resource_group_name" {
+  type    = string
+  default = "existing azure resource group name"
+}
+
 variable "f5xc_api_p12_file" {
   description = "F5 XC API certificate file"
   type        = string

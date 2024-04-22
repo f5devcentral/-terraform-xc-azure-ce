@@ -1,14 +1,20 @@
-# Example Single node single NIC existing VPC existing subnet
+# Example Single node multi NIC existing VNET new subnet
 
 This example instantiates:
 
-- Single node CE cluster
-- Azure resource group
+- Single node CE
 - Azure linux virtual machine
+- Azure virtual network
+- Azure route table SLI
+- Azure subnet route table association SLI
 - Azure subnet SLO
+- Azure subnet SLI
 - Azure network interface SLO
-- Azure network security_group SLO
+- Azure network interface SLI
+- Azure network security group SLO
+- Azure network security group SLI
 - Azure network interface security group association SLO
+- Azure network interface security group association SLI
 - Azure public IP SLO
 
 # Usage
