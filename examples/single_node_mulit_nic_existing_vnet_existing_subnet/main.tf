@@ -2,7 +2,7 @@ locals {
   custom_tags = {
     Owner         = var.owner
     f5xc-tenant   = var.f5xc_tenant
-    f5xc-template = "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet"
+    f5xc-template = "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_existing_subnet"
   }
 }
 
@@ -16,20 +16,31 @@ resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_ex
   name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
   provider            = azurerm.default
   location            = var.azurerm_region
-  address_space       = var.azurerm_vnet_address_space
+  address_space       = ["192.168.0.0/21"]
   resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
 }
 
 resource "azurerm_subnet" "slo" {
   name                 = "node0-subnet-slo"
   provider             = azurerm.default
-  address_prefixes     = [var.azurerm_vnet_subnet_node0_slo]
+  address_prefixes     = ["172.16.0.0/24"]
   resource_group_name  = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
   virtual_network_name = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
 }
 
-module "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet" {
-  depends_on        = [azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_subnet.slo]
+resource "azurerm_subnet" "sli" {
+  name                 = "node0-subnet-sli"
+  provider             = azurerm.default
+  address_prefixes     = ["172.16.1.0/24"]
+  resource_group_name  = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+  virtual_network_name = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+}
+
+module "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_existing_subnet" {
+  depends_on = [
+    azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet,
+    azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_subnet.slo, azurerm_subnet.sli
+  ]
   source            = "../../modules/f5xc/ce/azure"
   owner_tag         = var.owner
   is_sensitive      = false
@@ -43,6 +54,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet" {
     node0 = {
       # az                       = var.azurerm_az_node0 # needs standard sku. Does not work with basic sku
       existing_subnet_name_slo = azurerm_subnet.slo.name
+      existing_subnet_name_sli = azurerm_subnet.sli.name
     }
   }
   f5xc_token_name                         = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
@@ -68,6 +80,6 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet" {
   }
 }
 
-output "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet" {
-  value = module.f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_new_subnet
+output "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_existing_subnet" {
+  value = module.f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_existing_subnet
 }
