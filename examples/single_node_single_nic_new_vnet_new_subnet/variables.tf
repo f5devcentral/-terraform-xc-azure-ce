@@ -35,6 +35,11 @@ variable "azurerm_disable_password_authentication" {
   default     = true
 }
 
+variable "azurerm_region" {
+  type    = string
+  default = "eastus"
+}
+
 variable "f5xc_api_p12_file" {
   description = "F5 XC API certificate file"
   type        = string
@@ -99,11 +104,6 @@ variable "f5xc_cluster_longitude" {
 variable "f5xc_azure_az_node0" {
   type    = string
   default = "1"
-}
-
-variable "f5xc_azure_region" {
-  type    = string
-  default = "eastus"
 }
 
 variable "f5xc_azure_marketplace_agreement_publisher" {

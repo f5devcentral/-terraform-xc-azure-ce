@@ -15,7 +15,6 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
   f5xc_tenant       = var.f5xc_tenant
   f5xc_api_url      = var.f5xc_api_url
   f5xc_namespace    = var.f5xc_namespace
-  f5xc_azure_region = var.f5xc_azure_region
   f5xc_cluster_labels = {}
   f5xc_azure_az_nodes = {
     node0 = {
@@ -28,6 +27,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
   f5xc_api_p12_file                       = var.f5xc_api_p12_file
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
+  azurerm_region                          = var.azurerm_region
   azurerm_client_id                       = var.azure_client_id
   azurerm_tenant_id                       = var.azure_tenant_id
   azurerm_client_secret                   = var.azure_client_secret

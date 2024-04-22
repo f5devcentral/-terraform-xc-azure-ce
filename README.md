@@ -46,6 +46,9 @@ Description of available input variables. Used input variables will change per t
 
 | Name                             | Description                                                                                                    |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------|
+| SLO                              | Site local outside interface (external interface / egress interface)                                           |
+| SLI                              | Site local inside interface (internal interface  ( ingress interface)                                          |
+|                                  |                                                                                                                |
 | owner                            | Tag aws objects with creator / owner email address                                                             |
 | project_prefix                   | String added at the beginning of various AWS / F5 XC object identifier. `<project_prefix>_<object>`            |
 | project_suffix                   | String added at the end of various AWS / F5 XC object identifier. `<project_prefix>_<object>_<project_suffix>` |
