@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_ex
   name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
   provider            = azurerm.default
   location            = var.azurerm_region
-  address_space       = ["192.168.0.0/21"]
+  address_space       = ["172.16.0.0/21"]
   resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
 }
 
