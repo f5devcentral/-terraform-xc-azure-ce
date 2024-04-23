@@ -101,10 +101,9 @@ variable "f5xc_cluster_longitude" {
   default     = 40.730610
 }
 
-/*variable "f5xc_azure_az_node0" {
-  type    = string
-  default = "1"
-}*/
+variable "f5xc_azure_az_node0" {
+  type = string
+}
 
 variable "azure_client_id" {
   type    = string

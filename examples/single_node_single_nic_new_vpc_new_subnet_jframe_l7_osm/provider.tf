@@ -4,7 +4,11 @@ provider "volterra" {
   alias        = "default"
 }
 
-provider "aws" {
-  region = var.f5xc_aws_region
-  alias  = "default"
+provider "azurerm" {
+  client_id       = var.azure_client_id
+  client_secret   = var.azure_client_secret
+  tenant_id       = var.azure_tenant_id
+  subscription_id = var.azure_subscription_id
+  alias           = "default"
+  features {}
 }

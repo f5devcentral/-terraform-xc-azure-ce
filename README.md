@@ -68,6 +68,7 @@ Description of available input variables. Used input variables will change per t
 | f5xc_azure_vnet_sli_subnet_node1 | F5 XC node1 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
 | f5xc_azure_vnet_slo_subnet_node2 | F5 XC node2 SLO interface subnet e.g. "192.168.0.0/26"                                                         |  
 | f5xc_azure_vnet_sli_subnet_node2 | F5 XC node2 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
+| azurerm_marketplace_version      | 0.9.2                                                                                                          |
 |                                  |                                                                                                                |
 | azurerm_vnet_address_space       | Azure vnet address space provided as list list strings e.g. ["192.168.1.0/24", "192.168.2.0/24"]               |
 | azurerm_existing_vnet_name       |                                                                                                                |
