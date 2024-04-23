@@ -83,6 +83,16 @@ variable "f5xc_azure_vnet_slo_subnet_node0" {
   type        = string
 }
 
+variable "f5xc_azure_vnet_slo_subnet_node1" {
+  description = "F5 XC CE SLO interface subnet prefix"
+  type        = string
+}
+
+variable "f5xc_azure_vnet_slo_subnet_node2" {
+  description = "F5 XC CE SLO interface subnet prefix"
+  type        = string
+}
+
 variable "f5xc_ce_gateway_type" {
   description = "F5 XC CE gateway type"
   type        = string
@@ -100,11 +110,6 @@ variable "f5xc_cluster_longitude" {
   type        = number
   default     = 40.730610
 }
-
-/*variable "f5xc_azure_az_node0" {
-  type    = string
-  default = "1"
-}*/
 
 variable "azure_client_id" {
   type    = string
