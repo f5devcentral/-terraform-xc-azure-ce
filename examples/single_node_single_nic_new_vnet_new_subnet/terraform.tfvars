@@ -3,6 +3,7 @@ project_prefix                   = "f5xc"
 project_suffix = "01"
 # ssh_public_key_file              = "path to ssh public key file"
 azurerm_vnet_address_space       = ["192.168.0.0/21"]
+azurerm_instance_admin_username  = "operator"
 # f5xc_tenant                      = "full f5 xc tenant name e.g. playground-abcdefg"
 # f5xc_api_url                     = "f5 xc api url e.g. https://https://playground.console.ves.volterra.io/api"
 f5xc_cluster_name                = "az-ce-test"

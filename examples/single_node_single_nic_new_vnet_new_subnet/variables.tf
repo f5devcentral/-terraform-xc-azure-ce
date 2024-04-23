@@ -26,7 +26,6 @@ variable "azurerm_vnet_address_space" {
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
-  default     = "operator"
 }
 
 variable "azurerm_disable_password_authentication" {
