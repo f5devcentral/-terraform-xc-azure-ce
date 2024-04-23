@@ -8,6 +8,7 @@ azurerm_vnet_address_space       = ["192.168.0.0/21"]
 f5xc_cluster_name = "az-ce-test"
 # f5xc_api_p12_file                = "path_to_api_cert_file"
 f5xc_azure_az_node0              = "1"
+azurerm_instance_admin_username  = "operator"
 f5xc_azure_vnet_slo_subnet_node0 = "192.168.0.0/26"
 f5xc_ce_performance_enhancement_mode = {
   perf_mode_l7_enhanced = false
