@@ -7,7 +7,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
-  location = var.f5xc_azure_region
+  location = var.azurerm_region
   name     = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-rg", var.project_suffix)
   provider = azurerm.default
 }
@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_ex
   address_space       = var.azurerm_vnet_address_space
   name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
   provider            = azurerm.default
-  location            = var.f5xc_azure_region
+  location            = var.azurerm_region
   resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
 }
 

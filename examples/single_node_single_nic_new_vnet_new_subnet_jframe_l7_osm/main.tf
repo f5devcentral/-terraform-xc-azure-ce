@@ -18,7 +18,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vpc_new_subnet_jframe_l7_
   f5xc_cluster_labels = {}
   f5xc_azure_az_nodes = {
     node0 = {
-      az         = var.f5xc_azure_az_node0 # needs standard sku. Does not work with basic sku
+      az         = var.f5xc_azure_az_node0
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0,
     }
   }

@@ -2,11 +2,25 @@ locals {
   custom_tags = {
     Owner         = var.owner
     f5xc-tenant   = var.f5xc_tenant
-    f5xc-template = "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet"
+    f5xc-template = "f5xc_azure_cloud_ce_three_node_multi_nic_existing_vnet_new_subnet"
   }
 }
 
-module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
+resource "azurerm_resource_group" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
+  location = var.azurerm_region
+  name     = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-rg", var.project_suffix)
+  provider = azurerm.default
+}
+
+resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
+  address_space       = ["192.168.0.0/21"]
+  name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
+  provider            = azurerm.default
+  location            = var.azurerm_region
+  resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+}
+
+module "f5xc_azure_cloud_ce_three_node_multi_nic_existing_vnet_new_subnet" {
   source            = "../../modules/f5xc/ce/azure"
   owner_tag         = var.owner
   is_sensitive      = false
@@ -18,17 +32,17 @@ module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
   f5xc_cluster_labels = {}
   f5xc_azure_az_nodes = {
     node0 = {
-      az = var.f5xc_azure_az_node0
+      az         = var.f5xc_azure_az_node0
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0
       subnet_sli = var.f5xc_azure_vnet_sli_subnet_node0
     }
     node1 = {
-      az = var.f5xc_azure_az_node1
+      az         = var.f5xc_azure_az_node1
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node1
       subnet_sli = var.f5xc_azure_vnet_sli_subnet_node1
     }
     node2 = {
-      az = var.f5xc_azure_az_node2
+      az         = var.f5xc_azure_az_node2
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node2
       subnet_sli = var.f5xc_azure_vnet_sli_subnet_node2
     }
@@ -43,10 +57,11 @@ module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
   azurerm_tenant_id                       = var.azure_tenant_id
   azurerm_client_secret                   = var.azure_client_secret
   azurerm_subscription_id                 = var.azure_subscription_id
-  azurerm_vnet_address_space              = var.azurerm_vnet_address_space
+  azurerm_existing_vnet_name              = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
   azurerm_marketplace_version             = "0.9.2"
   azure_security_group_rules_slo          = []
   azurerm_instance_admin_username         = var.azurerm_instance_admin_username
+  azurerm_existing_resource_group_name    = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
   azurerm_disable_password_authentication = var.azurerm_disable_password_authentication
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
@@ -55,6 +70,6 @@ module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
   }
 }
 
-output "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
-  value = module.f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet
+output "f5xc_azure_cloud_ce_three_node_multi_nic_existing_vnet_new_subnet" {
+  value = module.f5xc_azure_cloud_ce_three_node_multi_nic_existing_vnet_new_subnet
 }

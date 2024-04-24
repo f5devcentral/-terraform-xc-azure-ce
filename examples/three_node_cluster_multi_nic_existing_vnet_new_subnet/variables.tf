@@ -18,11 +18,6 @@ variable "ssh_public_key_file" {
   type        = string
 }
 
-variable "azurerm_vnet_address_space" {
-  description = "Azure VNET CIDR block"
-  type        = list(string)
-}
-
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
@@ -36,8 +31,17 @@ variable "azurerm_disable_password_authentication" {
 }
 
 variable "azurerm_region" {
-  type    = string
-  default = "eastus"
+  type = string
+}
+
+variable "azurerm_existing_vnet_name" {
+  description = "Azure existing vnet name"
+  type        = string
+}
+
+variable "azurerm_existing_resource_group_name" {
+  description = "Azure existing resource group name"
+  type        = string
 }
 
 variable "f5xc_api_p12_file" {
