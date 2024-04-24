@@ -18,14 +18,10 @@ variable "ssh_public_key_file" {
   type        = string
 }
 
-variable "azurerm_vnet_address_space" {
-  description = "Azure VNET CIDR block"
-  type        = list(string)
-}
-
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
+  default     = "operator"
 }
 
 variable "azurerm_disable_password_authentication" {
@@ -34,8 +30,33 @@ variable "azurerm_disable_password_authentication" {
   default     = true
 }
 
+variable "azurerm_existing_subnet_name_node0_slo" {
+  description = "existing azure subnet for node0 slo"
+  type        = string
+}
+
+variable "azurerm_existing_subnet_name_node1_slo" {
+  description = "existing azure subnet for node1 slo"
+  type        = string
+}
+
+variable "azurerm_existing_subnet_name_node2_slo" {
+  description = "existing azure subnet for node2 slo"
+  type        = string
+}
+
 variable "azurerm_region" {
   type = string
+}
+
+variable "azurerm_existing_vnet_name" {
+  description = "Azure existing vnet name"
+  type        = string
+}
+
+variable "azurerm_existing_resource_group_name" {
+  description = "Azure existing resource group name"
+  type        = string
 }
 
 variable "f5xc_api_p12_file" {
@@ -76,11 +97,6 @@ variable "f5xc_cluster_name" {
   type        = string
 }
 
-variable "f5xc_azure_vnet_slo_subnet_node0" {
-  description = "F5 XC CE SLO interface subnet prefix"
-  type        = string
-}
-
 variable "f5xc_ce_gateway_type" {
   description = "F5 XC CE gateway type"
   type        = string
@@ -100,6 +116,14 @@ variable "f5xc_cluster_longitude" {
 }
 
 variable "f5xc_azure_az_node0" {
+  type = string
+}
+
+variable "f5xc_azure_az_node1" {
+  type = string
+}
+
+variable "f5xc_azure_az_node2" {
   type = string
 }
 
