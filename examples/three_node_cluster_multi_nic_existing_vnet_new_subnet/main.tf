@@ -21,6 +21,7 @@ resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_ex
 }
 
 module "f5xc_azure_cloud_ce_three_node_multi_nic_existing_vnet_new_subnet" {
+  depends_on        = [azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet]
   source            = "../../modules/f5xc/ce/azure"
   owner_tag         = var.owner
   is_sensitive      = false

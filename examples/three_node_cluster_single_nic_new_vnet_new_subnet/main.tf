@@ -2,11 +2,11 @@ locals {
   custom_tags = {
     Owner         = var.owner
     f5xc-tenant   = var.f5xc_tenant
-    f5xc-template = "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet"
+    f5xc-template = "f5xc_azure_cloud_ce_three_node_single_nic_new_vnet_new_subnet"
   }
 }
 
-module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
+module "f5xc_azure_cloud_ce_three_node_single_nic_new_vnet_new_subnet" {
   source            = "../../modules/f5xc/ce/azure"
   owner_tag         = var.owner
   is_sensitive      = false
@@ -18,15 +18,15 @@ module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
   f5xc_cluster_labels = {}
   f5xc_azure_az_nodes = {
     node0 = {
-      az = "1" #var.f5xc_azure_az_node0 # needs standard sku. Does not work with basic sku
+      az         = var.f5xc_azure_az_node0
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0
     }
     node1 = {
-      az = "2" #var.f5xc_azure_az_node1 # needs standard sku. Does not work with basic sku
+      az         = var.f5xc_azure_az_node1
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node1
     }
     node2 = {
-      az = "3" #var.f5xc_azure_az_node2 # needs standard sku. Does not work with basic sku
+      az         = var.f5xc_azure_az_node2
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node2
     }
   }
@@ -52,6 +52,6 @@ module "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
   }
 }
 
-output "f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet" {
-  value = module.f5xc_azure_cloud_ce_three_node_multi_nic_new_vnet_new_subnet
+output "f5xc_azure_cloud_ce_three_node_single_nic_new_vnet_new_subnet" {
+  value = module.f5xc_azure_cloud_ce_three_node_single_nic_new_vnet_new_subnet
 }

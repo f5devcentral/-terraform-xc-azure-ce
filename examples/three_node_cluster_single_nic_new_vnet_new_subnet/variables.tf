@@ -18,11 +18,6 @@ variable "ssh_public_key_file" {
   type        = string
 }
 
-variable "azurerm_vnet_address_space" {
-  description = "Azure VNET CIDR block"
-  type        = list(string)
-}
-
 variable "azurerm_instance_admin_username" {
   type        = string
   description = "Azure VM instance username"
@@ -36,8 +31,12 @@ variable "azurerm_disable_password_authentication" {
 }
 
 variable "azurerm_region" {
-  type    = string
-  default = "eastus"
+  type = string
+}
+
+variable "azurerm_vnet_address_space" {
+  description = "Azure VNET CIDR block"
+  type        = list(string)
 }
 
 variable "f5xc_api_p12_file" {
@@ -109,6 +108,18 @@ variable "f5xc_cluster_longitude" {
   description = "F5 XC CE geo longitude"
   type        = number
   default     = 40.730610
+}
+
+variable "f5xc_azure_az_node0" {
+  type = string
+}
+
+variable "f5xc_azure_az_node1" {
+  type = string
+}
+
+variable "f5xc_azure_az_node2" {
+  type = string
 }
 
 variable "azure_client_id" {
