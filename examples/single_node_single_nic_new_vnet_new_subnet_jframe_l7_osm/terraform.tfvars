@@ -1,6 +1,6 @@
 owner                            = "owner_email_address"
 project_prefix                   = "f5xc"
-project_suffix = "78"
+project_suffix = "80"
 # ssh_public_key_file              = "path to ssh public key file"
 azurerm_vnet_address_space       = ["192.168.0.0/21"]
 # f5xc_tenant                      = "full f5 xc tenant name e.g. playground-abcdefg"
@@ -16,4 +16,4 @@ f5xc_ce_performance_enhancement_mode = {
     jumbo_frame_enabled = false
   }
 }
-f5xc_enable_offline_survivability_mode = true
+f5xc_enable_offline_survivability_mode = false
