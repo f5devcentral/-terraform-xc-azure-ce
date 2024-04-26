@@ -13,6 +13,7 @@ This example instantiates:
 
 # Usage
 
+- To deploy this example Azure Resource Group and VNET are required in advance and in particular their IDs
 - Export AZURE_CLIENT_ID with: `export TF_VAR_azure_client_id="azure client id"`
 - Export AZURE_CLIENT_SECRET with: `export TF_VAR_azure_client_secret="azure client secret"`
 - Export AZURE_SUBSCRIPTION_ID with: `export TF_VAR_azure_subscription_id="azure subscription id"`

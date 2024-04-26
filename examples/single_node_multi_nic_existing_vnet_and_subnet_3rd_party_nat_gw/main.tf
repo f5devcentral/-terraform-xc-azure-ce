@@ -2,33 +2,49 @@ locals {
   custom_tags = {
     Owner         = var.owner
     f5xc-tenant   = var.f5xc_tenant
-    f5xc-template = "f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet"
+    f5xc-template = "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_nat_gw_no_eip"
   }
 }
 
 resource "azurerm_resource_group" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
-  location = var.azurerm_region
   name     = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-rg", var.project_suffix)
+  location = var.azurerm_region
   provider = azurerm.default
 }
 
 resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
-  address_space       = ["192.168.0.0/21"]
   name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
   provider            = azurerm.default
   location            = var.azurerm_region
+  address_space       = ["172.16.0.0/21"]
   resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
 }
 
-module "f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet" {
+resource "azurerm_subnet" "slo" {
+  name                 = "node0-subnet-slo"
+  provider             = azurerm.default
+  address_prefixes     = ["172.16.0.0/24"]
+  resource_group_name  = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+  virtual_network_name = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+}
+
+resource "azurerm_subnet" "sli" {
+  name                 = "node0-subnet-sli"
+  provider             = azurerm.default
+  address_prefixes     = ["172.16.1.0/24"]
+  resource_group_name  = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+  virtual_network_name = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+}
+
+module "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_nat_gw_no_eip" {
   depends_on = [
     azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet,
-    azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_subnet.slo_node0, azurerm_subnet.slo_node1, azurerm_subnet.slo_node2
+    azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_subnet.slo, azurerm_subnet.sli
   ]
   source            = "../../modules/f5xc/ce/azure"
   owner_tag         = var.owner
   is_sensitive      = false
-  has_public_ip     = true
+  has_public_ip     = false
   status_check_type = "cert"
   f5xc_tenant       = var.f5xc_tenant
   f5xc_api_url      = var.f5xc_api_url
@@ -36,22 +52,16 @@ module "f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet" {
   f5xc_cluster_labels = {}
   f5xc_azure_az_nodes = {
     node0 = {
-      az         = var.f5xc_azure_az_node0
-      subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0
-    }
-    node1 = {
-      az         = var.f5xc_azure_az_node1
-      subnet_slo = var.f5xc_azure_vnet_slo_subnet_node1
-    }
-    node2 = {
-      az         = var.f5xc_azure_az_node2
-      subnet_slo = var.f5xc_azure_vnet_slo_subnet_node2
+      az                       = var.azurerm_az_node0
+      existing_subnet_name_slo = azurerm_subnet.slo.name
+      existing_subnet_name_sli = azurerm_subnet.sli.name
     }
   }
   f5xc_token_name                         = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
   f5xc_cluster_name                       = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
   f5xc_api_p12_file                       = var.f5xc_api_p12_file
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
+  f5xc_is_private_cloud_ce                = true
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
   azurerm_region                          = var.azurerm_region
   azurerm_client_id                       = var.azure_client_id
@@ -71,6 +81,6 @@ module "f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet" {
   }
 }
 
-output "f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet" {
-  value = module.f5xc_azure_cloud_ce_three_node_single_nic_existing_vnet_new_subnet
+output "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_nat_gw_no_eip" {
+  value = module.f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_nat_gw_no_eip
 }

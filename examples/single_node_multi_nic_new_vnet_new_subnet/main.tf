@@ -20,7 +20,7 @@ module "f5xc_azure_cloud_ce_single_node_multi_nic_new_vnet_new_subnet" {
     node0 = {
       az         = var.f5xc_azure_az_node0
       subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0
-      subnet_slo = var.f5xc_azure_vnet_sli_subnet_node0
+      subnet_sli = var.f5xc_azure_vnet_sli_subnet_node0
     }
   }
   f5xc_token_name                         = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)

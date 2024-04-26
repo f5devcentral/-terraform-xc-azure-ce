@@ -30,25 +30,6 @@ variable "azurerm_disable_password_authentication" {
   default     = true
 }
 
-variable "f5xc_azure_vnet_slo_subnet_node0" {
-  description = "F5 XC CE SLO interface subnet prefix"
-  type        = string
-}
-
-variable "f5xc_azure_vnet_slo_subnet_node1" {
-  description = "F5 XC CE SLO interface subnet prefix"
-  type        = string
-}
-
-variable "f5xc_azure_vnet_slo_subnet_node2" {
-  description = "F5 XC CE SLO interface subnet prefix"
-  type        = string
-}
-
-variable "azurerm_region" {
-  type = string
-}
-
 variable "azurerm_existing_vnet_name" {
   description = "Azure existing vnet name"
   type        = string
@@ -56,6 +37,25 @@ variable "azurerm_existing_vnet_name" {
 
 variable "azurerm_existing_resource_group_name" {
   description = "Azure existing resource group name"
+  type        = string
+}
+
+variable "azurerm_az_node0" {
+  type    = string
+}
+
+variable "azurerm_existing_subnet_name_slo" {
+  description = "Azure existing subnet name for slo interface"
+  type        = string
+}
+
+variable "azurerm_existing_subnet_name_sli" {
+  description = "Azure existing subnet name for sli interface"
+  type        = string
+}
+
+variable "azurerm_region" {
+  description = "Azure region"
   type        = string
 }
 
@@ -100,7 +100,7 @@ variable "f5xc_cluster_name" {
 variable "f5xc_ce_gateway_type" {
   description = "F5 XC CE gateway type"
   type        = string
-  default     = "ingress_gateway"
+  default     = "ingress_egress_gateway"
 }
 
 variable "f5xc_cluster_latitude" {
@@ -113,18 +113,6 @@ variable "f5xc_cluster_longitude" {
   description = "F5 XC CE geo longitude"
   type        = number
   default     = 40.730610
-}
-
-variable "f5xc_azure_az_node0" {
-  type = string
-}
-
-variable "f5xc_azure_az_node1" {
-  type = string
-}
-
-variable "f5xc_azure_az_node2" {
-  type = string
 }
 
 variable "azure_client_id" {

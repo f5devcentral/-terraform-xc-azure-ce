@@ -1,19 +1,19 @@
-# Example three node ce cluster with single nic and new VNET and new subnet
+# Example Single node multi NIC existing VNET and existing subnet with 3rd party NAT GW
 
 This example instantiates:
 
-- Three node CE cluster
-- Azure resource group
+- Single node CE
 - Azure linux virtual machine
-- Azure virtual_network
-- Azure subnet SLO
 - Azure network interface SLO
+- Azure network interface SLI
 - Azure network security_group SLO
+- Azure network security_group SLI
 - Azure network interface security group association SLO
-- Azure public IP SLO
+- Azure network interface security group association SLI
 
 # Usage
-
+- To deploy this example Azure Resource Group, VNET and SLO, SLI subnet are required in advance and in particular their IDs
+- The 3rd party gateway should do SNAT and allow https IPSec ann or SSL traffic
 - Export AZURE_CLIENT_ID with: `export TF_VAR_azure_client_id="azure client id"`
 - Export AZURE_CLIENT_SECRET with: `export TF_VAR_azure_client_secret="azure client secret"`
 - Export AZURE_SUBSCRIPTION_ID with: `export TF_VAR_azure_subscription_id="azure subscription id"`
