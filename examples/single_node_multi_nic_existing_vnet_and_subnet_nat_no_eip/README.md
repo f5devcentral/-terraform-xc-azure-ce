@@ -12,7 +12,6 @@ This example instantiates:
 - Azure network interface security group association SLI
 - Azure subnet nat gateway association
 - Azure nat gateway public ip prefix association
-- Azure nat gateway public ip association
 - Azure nat gateway
 - Azure public ip prefix
 
