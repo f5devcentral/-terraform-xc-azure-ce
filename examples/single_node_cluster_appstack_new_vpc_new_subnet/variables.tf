@@ -66,7 +66,7 @@ variable "f5xc_aws_vpc_slo_subnet_node0" {
 }
 
 variable "f5xc_ce_gateway_type" {
-  description = "F5 XC CE gateway type"
+  description = "F5 XC CE gateway type to set single NIC or multi NIC"
   type        = string
 }
 

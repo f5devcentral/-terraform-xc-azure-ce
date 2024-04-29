@@ -5,7 +5,6 @@ This example instantiates:
 - Three node CE cluster
 - Azure linux virtual machine
 - Azure network interface SLO
-- Azure subnet SLO
 - Azure network security_group SLO
 - Azure network interface security group association SLO
 - Azure public IP SLO

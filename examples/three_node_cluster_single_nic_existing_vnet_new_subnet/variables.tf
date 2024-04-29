@@ -30,18 +30,18 @@ variable "azurerm_disable_password_authentication" {
   default     = true
 }
 
-variable "azurerm_existing_subnet_name_node0_slo" {
-  description = "existing azure subnet for node0 slo"
+variable "f5xc_azure_vnet_slo_subnet_node0" {
+  description = "F5 XC CE SLO interface subnet prefix"
   type        = string
 }
 
-variable "azurerm_existing_subnet_name_node1_slo" {
-  description = "existing azure subnet for node1 slo"
+variable "f5xc_azure_vnet_slo_subnet_node1" {
+  description = "F5 XC CE SLO interface subnet prefix"
   type        = string
 }
 
-variable "azurerm_existing_subnet_name_node2_slo" {
-  description = "existing azure subnet for node2 slo"
+variable "f5xc_azure_vnet_slo_subnet_node2" {
+  description = "F5 XC CE SLO interface subnet prefix"
   type        = string
 }
 

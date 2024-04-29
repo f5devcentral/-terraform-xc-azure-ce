@@ -98,7 +98,7 @@ variable "f5xc_cluster_name" {
 }
 
 variable "f5xc_ce_gateway_type" {
-  description = "F5 XC CE gateway type"
+  description = "F5 XC CE gateway type to set single NIC or multi NIC"
   type        = string
   default     = "ingress_egress_gateway"
 }

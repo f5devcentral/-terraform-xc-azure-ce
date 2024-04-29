@@ -20,7 +20,6 @@ module "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_3rd_pa
     node0 = {
       az                       = var.azurerm_az_node0
       existing_subnet_name_slo = var.azurerm_existing_subnet_name_slo
-      existing_subnet_name_sli = var.azurerm_existing_subnet_name_sli
     }
   }
   f5xc_token_name                         = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
