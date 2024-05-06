@@ -2,12 +2,12 @@ locals {
   custom_tags = {
     Owner         = var.owner
     f5xc-tenant   = var.f5xc_tenant
-    f5xc-template = "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet"
+    f5xc-template = "f5xc_azure_cloud_ce_single_node_appstack_single_nic_new_vnet_new_subnet"
   }
 }
 
-module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
-  source            = "../../modules/f5xc/ce/azure"
+module "f5xc_azure_cloud_ce_single_node_appstack_single_nic_new_vnet_new_subnet" {
+  source            = "../../modules/f5xc/ce/appstack/azure"
   owner_tag         = var.owner
   is_sensitive      = false
   has_public_ip     = true
@@ -15,12 +15,16 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
   f5xc_tenant       = var.f5xc_tenant
   f5xc_api_url      = var.f5xc_api_url
   f5xc_namespace    = var.f5xc_namespace
+  f5xc_api_token    = var.f5xc_api_token
   f5xc_cluster_labels = {}
-  f5xc_azure_az_nodes = {
-    node0 = {
-      az         = var.f5xc_azure_az_node0
-      subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0,
+  f5xc_cluster_nodes = {
+    master = {
+      m0 = {
+        az         = var.f5xc_azure_az_node0
+        subnet_slo = var.f5xc_azure_vnet_slo_subnet_node0
+      }
     }
+    worker = {}
   }
   f5xc_token_name                         = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
   f5xc_cluster_name                       = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
@@ -34,8 +38,8 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
   azurerm_subscription_id                 = var.azure_subscription_id
   azurerm_vnet_address_space              = var.azurerm_vnet_address_space
   azurerm_marketplace_version             = "0.9.2"
-  azure_security_group_rules_slo          = []
   azurerm_instance_admin_username         = var.azurerm_instance_admin_username
+  azurerm_security_group_rules_slo        = var.azurerm_security_group_rules_slo
   azurerm_disable_password_authentication = var.azurerm_disable_password_authentication
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
@@ -44,6 +48,6 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
   }
 }
 
-output "f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet" {
-  value = module.f5xc_azure_cloud_ce_single_node_single_nic_new_vnet_new_subnet
+output "f5xc_azure_cloud_ce_single_node_appstack_single_nic_new_vnet_new_subnet" {
+  value = module.f5xc_azure_cloud_ce_single_node_appstack_single_nic_new_vnet_new_subnet
 }
