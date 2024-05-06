@@ -6,7 +6,22 @@ locals {
   }
 }
 
+resource "azurerm_resource_group" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
+  name     = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-rg", var.project_suffix)
+  location = var.azurerm_region
+  provider = azurerm.default
+}
+
+resource "azurerm_virtual_network" "f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet" {
+  name                = format("%s-%s-%s", var.project_prefix, "azure-ce-exists-vnet", var.project_suffix)
+  provider            = azurerm.default
+  location            = var.azurerm_region
+  address_space       = ["172.16.0.0/21"]
+  resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name
+}
+
 module "f5xc_azure_cloud_ce_single_node_appstack_single_nic_existing_vnet_new_subnet" {
+  depends_on        = [azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet, azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet]
   source            = "../../modules/f5xc/ce/appstack/azure"
   owner_tag         = var.owner
   is_sensitive      = false
@@ -36,11 +51,11 @@ module "f5xc_azure_cloud_ce_single_node_appstack_single_nic_existing_vnet_new_su
   azurerm_tenant_id                       = var.azure_tenant_id
   azurerm_client_secret                   = var.azure_client_secret
   azurerm_subscription_id                 = var.azure_subscription_id
-  azurerm_existing_vnet_name              = var.azurerm_existing_vnet_name
+  azurerm_existing_vnet_name = azurerm_virtual_network.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name #var.azurerm_existing_vnet_name
   azurerm_marketplace_version             = "0.9.2"
   azurerm_instance_admin_username         = var.azurerm_instance_admin_username
   azurerm_security_group_rules_slo        = var.azurerm_security_group_rules_slo
-  azurerm_existing_resource_group_name    = var.azurerm_existing_resource_group_name
+  azurerm_existing_resource_group_name = azurerm_resource_group.f5xc_ce_single_node_multi_nic_existing_rg_existing_vnet.name#var.azurerm_existing_resource_group_name
   azurerm_disable_password_authentication = var.azurerm_disable_password_authentication
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
