@@ -50,7 +50,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_existing_vnet_existing_subnet
   f5xc_api_url      = var.f5xc_api_url
   f5xc_namespace    = var.f5xc_namespace
   f5xc_cluster_labels = {}
-  f5xc_azure_az_nodes = {
+  f5xc_cluster_nodes = {
     node0 = {
       az                       = var.azurerm_az_node0
       existing_subnet_name_slo = azurerm_subnet.slo.name
