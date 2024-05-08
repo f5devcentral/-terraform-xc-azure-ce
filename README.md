@@ -84,7 +84,7 @@ Description of available input variables. Used input variables will change per t
 | Single Node Multi NIC Existing VNET / new subnet                             | [Description](examples/single_node_multi_nic_existing_vnet_new_subnet/README.md)                   |
 | Single Node Single NIC existing VNET / subnet                                | [Description](examples/single_node_single_nic_existing_vnet_existing_subnet/README.md)             |
 | Single Node Multi NIC existing VNET / subnet                                 | [Description](examples/single_node_mulit_nic_existing_vnet_existing_subnet/README.md)              |
-| Single Node Multi NIC existing VNET / new subnet with SLO no PiP / GW Router | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_nat_no_eip/README.md)        |
+| Single Node Multi NIC existing VNET / new subnet with SLO no PiP / GW Router | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_nat_no_pip/README.md)        |
 | Single Node Single NIC existing VNET / subnet and 3rd party NAT GW           | [Description](examples/single_node_single_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md) |
 | Single Node Multi NIC existing VNET / subnet and 3rd party NAT GW            | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md)  |
 | Single Node AppStack Cluster new VNET / subnet                               | [Description](examples/single_node_cluster_appstack_new_vnet_new_subnet/README.md)                 |
