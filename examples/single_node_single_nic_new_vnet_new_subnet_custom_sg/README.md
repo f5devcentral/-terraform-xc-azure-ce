@@ -11,6 +11,7 @@ This example instantiates:
 - Azure network security_group SLO
 - Azure network interface security group association SLO
 - Azure public IP SLO
+- Inject custom security group rules
 
 # Usage
 
