@@ -49,15 +49,14 @@ Description of available input variables. Used input variables will change per t
 | SLO                              | Site local outside interface (external interface / egress interface)                                           |
 | SLI                              | Site local inside interface (internal interface  ( ingress interface)                                          |
 |                                  |                                                                                                                |
-| owner                            | Tag aws objects with creator / owner email address                                                             |
+| owner                            | Tag Azure objects with creator / owner email address                                                           |
 | project_prefix                   | String added at the beginning of various AWS / F5 XC object identifier. `<project_prefix>_<object>`            |
 | project_suffix                   | String added at the end of various AWS / F5 XC object identifier. `<project_prefix>_<object>_<project_suffix>` |
 |                                  | Example prefix + suffix for F5XC site name `project_prefix_cluster_name_project_suffix`                        |
 |                                  |                                                                                                                |
 | f5xc_tenant                      | Full f5 xc tenant name e.g. playground-abcdefg                                                                 |
 | f5xc_api_url                     | F5 XC API URL e.g. https://https://playground.console.ves.volterra.io/api                                      |
-| f5xc_aws_region                  | AWS region to deploy site in e.g. "us-west-2"                                                                  |
-| f5xc_cluster_name                | F5 XC cluster name e.g. "aws-ce-test"                                                                          |
+| f5xc_cluster_name                | F5 XC cluster name e.g. "azure-ce-test"                                                                        |
 | f5xc_api_p12_file                | Path to F5 XC exported API cert file                                                                           |
 | f5xc_azure_az_node0              | Azure availability zone for cluster node0 e.g. "1"                                                             |
 | f5xc_azure_az_node1              | Azure availability zone for cluster node1 e.g. "2"                                                             |
@@ -68,34 +67,35 @@ Description of available input variables. Used input variables will change per t
 | f5xc_azure_vnet_sli_subnet_node1 | F5 XC node1 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
 | f5xc_azure_vnet_slo_subnet_node2 | F5 XC node2 SLO interface subnet e.g. "192.168.0.0/26"                                                         |  
 | f5xc_azure_vnet_sli_subnet_node2 | F5 XC node2 SLI interface subnet e.g. "192.168.0.64/26"                                                        |
-| azurerm_marketplace_version      | 0.9.2                                                                                                          |
 |                                  |                                                                                                                |
+| azurerm_region                   | Azure region to deploy CE into                                                                                 |
+| azurerm_marketplace_version      | CE virtual instance image version e.g. 0.9.2                                                                   |
 | azurerm_vnet_address_space       | Azure vnet address space provided as list list strings e.g. ["192.168.1.0/24", "192.168.2.0/24"]               |
-| azurerm_existing_vnet_name       |                                                                                                                |
-| azurerm_existing_resource_group  |                                                                                                                |
+| azurerm_existing_vnet_name       | Azure existing VNET name                                                                                       |
+| azurerm_existing_resource_group  | Azure existing resource group name                                                                             |
 
 ## Topologies
 
-| Name                                                                          | Description                                                                                        |
-|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Single Node Single NIC new VNET / subnet                                      | [Description](examples/single_node_single_nic_new_vnet_new_subnet/README.md)                       |
-| Single Node Multi NIC new VNET / subnet                                       | [Description](examples/single_node_multi_nic_new_vnet_new_subnet/README.md)                        |
-| Single Node Single NIC Existing VNET / new subnet                             | [Description](examples/single_node_single_nic_existing_vnet_new_subnet/README.md)                  |
-| Single Node Multi NIC Existing VNET / new subnet                              | [Description](examples/single_node_multi_nic_existing_vnet_new_subnet/README.md)                   |
-| Single Node Single NIC existing VNET / subnet                                 | [Description](examples/single_node_single_nic_existing_vnet_existing_subnet/README.md)             |
-| Single Node Multi NIC existing VNET / subnet                                  | [Description](examples/single_node_mulit_nic_existing_vnet_existing_subnet/README.md)              |
-| Single Node Multi NIC existing VNET / new subnet with SLO no EIP / AWS NAT GW | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_nat_no_eip/README.md)        |
-| Single Node Single NIC existing VNET / subnet and 3rd party NAT GW            | [Description](examples/single_node_single_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md) |
-| Single Node Multi NIC existing VNET / subnet and 3rd party NAT GW             | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md)  |
-| Single Node AppStack Cluster new VNET / subnet                                | [Description](examples/single_node_cluster_appstack_new_vnet_new_subnet/README.md)                 |
-| Single Node AppStack Cluster existing VNET / new subnet                       | [Description](examples/single_node_cluster_appstack_existing_vnet_new_subnet/README.md)            |
-| Three Node Cluster Single NIC new VNET / subnet                               | [Description](examples/three_node_cluster_single_nic_new_vnet_new_subnet/README.md)                |
-| Three Node Cluster Single NIC existing VNET / new subnet                      | [Description](examples/three_node_cluster_single_nic_existing_vnet_new_subnet/README.md)           |
-| Three Node Cluster Single NIC existing VNET / subnet                          | [Description](examples/three_node_cluster_single_nic_existing_vnet_existing_subnet/README.md)      |
-| Three Node Cluster Multi NIC new VNET / subnet                                | [Description](examples/three_node_cluster_multi_nic_new_vnet_new_subnet/README.md)                 |
-| Three Node Cluster Multi NIC existing VNET / new subnet                       | [Description](examples/three_node_cluster_multi_nic_existing_vnet_new_subnet/README.md)            |
-| Three Node AppStack Cluster new VNET / subnet                                 | [Description](examples/three_node_cluster_appstack_new_vnet_new_subnet/README.md)                  |
-| Three Node AppStack Cluster existing VNET / new subnet                        | [Description](examples/three_node_cluster_appstack_existing_vnet_new_subnet/README.md)             |
+| Name                                                                         | Description                                                                                        |
+|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Single Node Single NIC new VNET / subnet                                     | [Description](examples/single_node_single_nic_new_vnet_new_subnet/README.md)                       |
+| Single Node Multi NIC new VNET / subnet                                      | [Description](examples/single_node_multi_nic_new_vnet_new_subnet/README.md)                        |
+| Single Node Single NIC Existing VNET / new subnet                            | [Description](examples/single_node_single_nic_existing_vnet_new_subnet/README.md)                  |
+| Single Node Multi NIC Existing VNET / new subnet                             | [Description](examples/single_node_multi_nic_existing_vnet_new_subnet/README.md)                   |
+| Single Node Single NIC existing VNET / subnet                                | [Description](examples/single_node_single_nic_existing_vnet_existing_subnet/README.md)             |
+| Single Node Multi NIC existing VNET / subnet                                 | [Description](examples/single_node_mulit_nic_existing_vnet_existing_subnet/README.md)              |
+| Single Node Multi NIC existing VNET / new subnet with SLO no PiP / GW Router | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_nat_no_eip/README.md)        |
+| Single Node Single NIC existing VNET / subnet and 3rd party NAT GW           | [Description](examples/single_node_single_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md) |
+| Single Node Multi NIC existing VNET / subnet and 3rd party NAT GW            | [Description](examples/single_node_multi_nic_existing_vnet_and_subnet_3rd_party_nat_gw/README.md)  |
+| Single Node AppStack Cluster new VNET / subnet                               | [Description](examples/single_node_cluster_appstack_new_vnet_new_subnet/README.md)                 |
+| Single Node AppStack Cluster existing VNET / new subnet                      | [Description](examples/single_node_cluster_appstack_existing_vnet_new_subnet/README.md)            |
+| Three Node Cluster Single NIC new VNET / subnet                              | [Description](examples/three_node_cluster_single_nic_new_vnet_new_subnet/README.md)                |
+| Three Node Cluster Single NIC existing VNET / new subnet                     | [Description](examples/three_node_cluster_single_nic_existing_vnet_new_subnet/README.md)           |
+| Three Node Cluster Single NIC existing VNET / subnet                         | [Description](examples/three_node_cluster_single_nic_existing_vnet_existing_subnet/README.md)      |
+| Three Node Cluster Multi NIC new VNET / subnet                               | [Description](examples/three_node_cluster_multi_nic_new_vnet_new_subnet/README.md)                 |
+| Three Node Cluster Multi NIC existing VNET / new subnet                      | [Description](examples/three_node_cluster_multi_nic_existing_vnet_new_subnet/README.md)            |
+| Three Node AppStack Cluster new VNET / subnet                                | [Description](examples/three_node_cluster_appstack_new_vnet_new_subnet/README.md)                  |
+| Three Node AppStack Cluster existing VNET / new subnet                       | [Description](examples/three_node_cluster_appstack_existing_vnet_new_subnet/README.md)             |
 
 ## Feature specific examples
 
