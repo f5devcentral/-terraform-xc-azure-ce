@@ -65,6 +65,7 @@ module "f5xc_azure_cloud_ce_three_node_appstack_single_nic_new_vnet_new_subnet" 
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
     azurerm  = azurerm.default
+    restful  = restful.default
     volterra = volterra.default
   }
 }

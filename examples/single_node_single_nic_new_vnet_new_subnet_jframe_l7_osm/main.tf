@@ -26,6 +26,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vpc_new_subnet_jframe_l7_
   f5xc_cluster_name                       = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
   f5xc_api_p12_file                       = var.f5xc_api_p12_file
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
+  f5xc_sms_provider_name                  = "azure"
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
   f5xc_ce_performance_enhancement_mode    = var.f5xc_ce_performance_enhancement_mode
   f5xc_enable_offline_survivability_mode  = var.f5xc_enable_offline_survivability_mode
@@ -42,6 +43,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vpc_new_subnet_jframe_l7_
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
     azurerm  = azurerm.default
+    restful  = restful.default
     volterra = volterra.default
   }
 }

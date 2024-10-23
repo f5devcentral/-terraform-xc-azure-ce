@@ -27,6 +27,7 @@ module "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vnet_new_subnet" {
   f5xc_cluster_name                       = format("%s-%s-%s", var.project_prefix, var.f5xc_cluster_name, var.project_suffix)
   f5xc_api_p12_file                       = var.f5xc_api_p12_file
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
+  f5xc_sms_provider_name                  = "azure"
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
   azurerm_region                          = var.azurerm_region
   azurerm_client_id                       = var.azure_client_id
@@ -43,6 +44,7 @@ module "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vnet_new_subnet" {
   ssh_public_key                          = file(var.ssh_public_key_file)
   providers = {
     azurerm  = azurerm.default
+    restful  = restful.default
     volterra = volterra.default
   }
 }
