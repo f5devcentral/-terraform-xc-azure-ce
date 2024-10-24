@@ -118,6 +118,11 @@ variable "f5xc_ce_gateway_type" {
   default     = "ingress_egress_gateway"
 }
 
+variable "f5xc_secure_mesh_site_version" {
+  type    = number
+  default = 1
+}
+
 variable "f5xc_cluster_latitude" {
   description = "F5 XC CE geo latitude"
   type        = number

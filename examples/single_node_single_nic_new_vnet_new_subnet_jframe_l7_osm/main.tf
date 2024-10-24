@@ -28,6 +28,7 @@ module "f5xc_azure_cloud_ce_single_node_single_nic_new_vpc_new_subnet_jframe_l7_
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
   f5xc_sms_provider_name                  = "azure"
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
+  f5xc_secure_mesh_site_version           = var.f5xc_secure_mesh_site_version
   f5xc_ce_performance_enhancement_mode    = var.f5xc_ce_performance_enhancement_mode
   f5xc_enable_offline_survivability_mode  = var.f5xc_enable_offline_survivability_mode
   azurerm_region                          = var.azurerm_region

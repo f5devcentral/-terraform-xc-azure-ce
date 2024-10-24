@@ -99,6 +99,11 @@ variable "f5xc_ce_gateway_type" {
   default     = "ingress_gateway"
 }
 
+variable "f5xc_secure_mesh_site_version" {
+  type    = number
+  default = 1
+}
+
 variable "f5xc_cluster_latitude" {
   description = "F5 XC CE geo latitude"
   type        = number
@@ -114,29 +119,6 @@ variable "f5xc_cluster_longitude" {
 variable "azurerm_az_node0" {
   type    = string
   default = "1"
-}
-
-variable "f5xc_azure_marketplace_agreement_publisher" {
-  type    = string
-  default = "volterraedgeservices"
-}
-
-variable "f5xc_azure_marketplace_agreement_offers" {
-  type = map(string)
-  default = {
-    ingress_egress_gateway = "entcloud_voltmesh_voltstack_node"
-    ingress_gateway        = "volterra-node"
-    app_stack              = "entcloud_voltmesh_voltstack_node"
-  }
-}
-
-variable "f5xc_azure_marketplace_agreement_plans" {
-  type = map(string)
-  default = {
-    ingress_egress_gateway = "freeplan_entcloud_voltmesh_voltstack_node_multinic"
-    ingress_gateway        = "volterra-node"
-    app_stack              = "freeplan_entcloud_voltmesh_voltstack_node"
-  }
 }
 
 variable "azure_client_id" {

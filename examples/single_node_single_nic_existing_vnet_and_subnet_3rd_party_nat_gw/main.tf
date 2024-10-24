@@ -28,6 +28,7 @@ module "f5xc_azure_cloud_ce_single_node_multi_nic_existing_vpc_and_subnet_3rd_pa
   f5xc_ce_gateway_type                    = var.f5xc_ce_gateway_type
   f5xc_sms_provider_name                  = "azure"
   f5xc_api_p12_cert_password              = var.f5xc_api_p12_cert_password
+  f5xc_secure_mesh_site_version           = var.f5xc_secure_mesh_site_version
   azurerm_region                          = var.azurerm_region
   azurerm_client_id                       = var.azure_client_id
   azurerm_tenant_id                       = var.azure_tenant_id
